@@ -1,0 +1,15 @@
+# 📌 Use Case Diagram - Library Management System
+
+!Use Case Diagram(../docs/use_case_diagram.png)
+
+graph TD
+  Student -->|Search| SearchBooks
+  Student -->|Checkout| BorrowBook
+  Student -->|Return| ReturnBook
+  Student -->|Reserve| ReserveBook
+  Librarian -->|Manage| ManageInventory
+  Librarian -->|Process| ProcessCheckout
+  Librarian -->|Overdue| TrackOverdueBooks
+  Admin -->|Generate| GenerateReports
+  IT_Staff -->|Monitor| MonitorSystem
+  System -->|Notify| SendAlerts
