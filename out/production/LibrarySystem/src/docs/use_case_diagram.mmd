@@ -1,0 +1,12 @@
+
+graph TD
+  Student -->|Search| SearchBooks
+  Student -->|Checkout| BorrowBook
+  Student -->|Return| ReturnBook
+  Student -->|Reserve| ReserveBook
+  Librarian -->|Manage| ManageInventory
+  Librarian -->|Process| ProcessCheckout
+  Librarian -->|Overdue| TrackOverdueBooks
+  Admin -->|Generate| GenerateReports
+  IT_Staff -->|Monitor| MonitorSystem
+  System -->|Notify| SendAlerts
