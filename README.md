@@ -4,4 +4,4 @@ A basic Java-based library management system that allows users to:
 - Check out books 
 ## Project Files
 - [SPECIFICATION.md](SPECIFICATION.md) - System Specification
-- [ARCHITECTURE.md](ARCHITECTURE.md) - C4 Architecture Model  
+- [ARCHITECTURE.md](ARCHITECTURE.md) - C4 Architecture Model
