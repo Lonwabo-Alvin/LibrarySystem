@@ -40,7 +40,7 @@ ability.
     1. Librarian selects "Manage Inventory".
     2. Librarian adds/edits/removes a book.
     3. System updates the database.
-    4. System confirms the action.
+    4. System confirms the actions.
 
 ## 6. **Use Case: Track Overdue Books**
 - **Actor**: Librarian
