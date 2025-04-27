@@ -10,6 +10,9 @@ import src.patterns.singleton.LibrarySystem;
 public class Main {
     public static void main(String[] args) {
 
+            System.out.println("===== Testing Design Patterns =====");
+
+
             Book novel = BookFactory.createBook("novel");
             System.out.println("Factory Created: " + novel.getTitle());
 
@@ -28,5 +31,10 @@ public class Main {
 
             Configuration config = Configuration.getInstance();
             System.out.println("Database URL: " + config.getDbUrl());
+
+            System.out.println("\n===== Running Library Management System =====");
+
+            Library library = new Library();
+            library.run();
         }
 }

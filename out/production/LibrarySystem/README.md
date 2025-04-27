@@ -97,3 +97,42 @@ View the full sprint log in [CHANGELOG.md](./ChangeLog.md)
 
 ---
 
+## Assignment 11 – Task 1: Repository Design (30 Marks)
+
+To implement a scalable and testable persistence layer, we created a **generic CRUD repository interface** using Java generics. This avoids duplication and ensures consistency across entity-specific repositories.
+
+### Design Highlights:
+
+- `Repository<T, ID>` is a reusable interface that supports Create, Read, Update, and Delete operations for any domain entity.
+- `BookRepository` extends this interface to handle `Book` objects specifically using `String` as the ID.
+- This design promotes code reuse, modularity, and abstraction, and supports the Dependency Inversion Principle from SOLID.
+
+This interface design allows us to easily switch between in-memory, file-based, or database storage** by plugging in different implementations.
+
+Code can be found in: [`src/repositories`](./src/repositories)
+
+##  Task 2: In-Memory Repository 
+
+Implemented `InMemoryBookRepository` to provide a fully functional persistence layer using Java’s built-in `HashMap`.
+This class implements the `BookRepository` interface and provides all CRUD operations in memory.
+
+### Design Highlights:
+- Uses `Map<String, Book>` to simulate persistent storage.
+- Validates inputs (e.g., null `Book` or missing ID).
+- Follows the `Repository` interface, so we can easily swap the backend later (e.g., FileRepository, SQLBookRepository).
+- Prepares the system for dependency injection or factory-based selection in future tasks.
+
+Code: [`src/repositories/impl/InMemoryBookRepository.java`](./src/repositories/impl/InMemoryBookRepository.java)
+
+## Task 3: Switching Repositories with Factory
+
+ Implemented a `RepositoryFactory` to dynamically provide the appropriate repository backend. 
+ The Library class was refactored to use the repository layer via the `RepositoryFactory`.
+ This decouples storage from logic, enabling backends to be swapped easily.
+
+### Why Factory?
+- It follows the Open/Closed Principle (we can add `FileBookRepository` later without changing `Library.java`)
+- Makes the system extensible and ready for config-based swapping
+- Keeps business logic separate from infrastructure
+
+Code: [`src/factories/RepositoryFactory.java`](./src/factories/RepositoryFactory.java)

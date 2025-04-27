@@ -1,13 +1,21 @@
 package src;
 
-import src.Book;
+import src.factories.RepositoryFactory;
+import src.repositories.BookRepository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 public class Library {
 
-    private List<Book> books = new ArrayList<>();
+    //private List<Book> books = new ArrayList<>();
+
+    private final BookRepository bookRepository;
+
+    public Library() {
+
+        this.bookRepository = RepositoryFactory.getBookRepository("memory");
+    }
 
     public void run() {
         Scanner scanner = new Scanner(System.in);
@@ -19,7 +27,7 @@ public class Library {
             System.out.println("4. Exit");
             System.out.print("Choose an option: ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -41,33 +49,42 @@ public class Library {
     }
 
     private void addBook(Scanner scanner) {
-        System.out.print("Enter book title: ");
+        System.out.print("Enter Book ID: ");
+        String id = scanner.nextLine();
+        System.out.print("Enter Book Title: ");
         String title = scanner.nextLine();
-        books.add(new Book(title));
-        System.out.println("src.Book added successfully.");
+        System.out.print("Enter Book Author: ");
+        String author = scanner.nextLine();
+        System.out.print("Enter ISBN: ");
+        String isbn = scanner.nextLine();
+
+        Book book = new Book(id, title, author, isbn);
+        bookRepository.save(book);
+        System.out.println("Book added successfully.");
     }
 
     private void listBooks() {
+        List<Book> books = bookRepository.findAll();
         if (books.isEmpty()) {
             System.out.println("No books available.");
         } else {
             System.out.println("Available Books:");
             for (Book book : books) {
-                System.out.println("- " + book.getTitle());
+                System.out.println("- " + book.getTitle() + " (ID: " + book.getBookId() + ")");
             }
         }
     }
 
     private void checkoutBook(Scanner scanner) {
-        System.out.print("Enter book title to check out: ");
-        String title = scanner.nextLine();
-        for (Book book : books) {
-            if (book.getTitle().equalsIgnoreCase(title)) {
-                books.remove(book);
-                System.out.println("src.Book checked out successfully.");
-                return;
-            }
+        System.out.print("Enter Book ID to check out: ");
+        String id = scanner.nextLine();
+        Optional<Book> optionalBook = bookRepository.findById(id);
+
+        if (optionalBook.isPresent()) {
+            bookRepository.delete(id);
+            System.out.println("Book checked out successfully.");
+        } else {
+            System.out.println("Book not found.");
         }
-        System.out.println("src.Book not found.");
     }
 }
