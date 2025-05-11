@@ -152,3 +152,55 @@ The `RepositoryFactory` was updated to support "memory", "file", and "db" types.
 - [`src/repositories/impl/FileBookRepository.java`](./src/repositories/impl/FileBookRepository.java)
 - [`src/repositories/impl/SQLBookRepository.java`](./src/repositories/impl/SQLBookRepository.java)
 
+
+
+
+## CI/CD Pipeline – GitHub Actions
+
+This project uses **GitHub Actions** to automate testing, builds, and artifact creation.
+
+###  CI (Continuous Integration)
+- Every push or pull request to any branch triggers:
+    - `./gradlew build` (or `mvn clean install`)
+    - `./gradlew test` (or `mvn test`)
+- Status checks block merging if tests fail.
+
+###  CD (Continuous Deployment)
+- If code is merged into the `main` branch:
+    - A `.jar` file is built using Gradle or Maven.
+    - The `.jar` is uploaded automatically to the **GitHub Actions artifacts tab**.
+
+###  Protected Branch: `main`
+ Requires at least 1 reviewer to approve PRs.
+- Requires status checks to pass before merging.
+-  Direct pushes are blocked.
+-  PRs must be up to date with `main`.
+
+---
+
+###  GitHub Screenshots
+
+You can find screenshots in the `/docs` folder showing:
+- Branch protection rule enabled
+- CI build passing in GitHub Actions
+- Uploaded artifact from the build
+- PR blocked when tests fail
+
+---
+
+###  Artifact Details
+
+- Artifact name: `library-app-jar`
+- Location: `build/libs/` (or `target/`)
+- Triggered by: successful merge into `main`
+
+---
+
+##  Developer Workflow
+
+1. Developer creates a feature branch.
+2. Developer commits code and pushes branch.
+3. GitHub Actions runs tests automatically.
+4. Team member reviews the PR.
+5. If tests pass and review is approved, PR can be merged.
+6. Merge triggers artifact creation in CD.
