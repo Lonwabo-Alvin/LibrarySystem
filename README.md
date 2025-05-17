@@ -1,3 +1,13 @@
+##  Getting Started
+
+### Clone and Setup
+```bash
+git clone https://github.com/Lonwabo-Alvin/library-system.git
+cd library-system
+./gradlew build
+./gradlew bootRun
+```
+
 A basic Java-based library management system that allows users to:
 - Add books to the library
 - List all available books
