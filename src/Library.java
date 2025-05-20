@@ -72,6 +72,7 @@ public class Library {
             for (Book book : books) {
                 System.out.println("- " + book.getTitle() + " (ID: " + book.getBookId() + ")");
             }
+            System.out.println("Count of Available books: " + books.size());
         }
     }
 
