@@ -81,8 +81,17 @@ public class Library {
         Optional<Book> optionalBook = bookRepository.findById(id);
 
         if (optionalBook.isPresent()) {
-            bookRepository.delete(id);
-            System.out.println("Book checked out successfully.");
+            Book book = optionalBook.get();
+            System.out.println("Book found: " + book.getTitle());
+            System.out.print("Are you sure you want to check out this book? (Y/N): ");
+            String confirmation = scanner.nextLine().trim();
+
+            if ("Y".equalsIgnoreCase(confirmation)) {
+                bookRepository.delete(id);
+                System.out.println("Book checked out successfully.");
+            } else {
+                System.out.println("Checkout canceled.");
+            }
         } else {
             System.out.println("Book not found.");
         }
