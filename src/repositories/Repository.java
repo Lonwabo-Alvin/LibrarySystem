@@ -8,4 +8,6 @@ public interface Repository <T, ID> {
     Optional<T> findById(ID id);
     List<T> findAll();
     void delete(ID id);
+    List<T> findByAuthor(String author);
+    Optional<T> findByTitle(String title);
 }

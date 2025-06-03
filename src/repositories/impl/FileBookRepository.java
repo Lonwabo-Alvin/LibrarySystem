@@ -27,4 +27,14 @@ public class FileBookRepository implements BookRepository {
     public void delete(String id) {
         throw new UnsupportedOperationException("FileBookRepository.delete() not implemented yet.");
     }
+
+    @Override
+    public List<Book> findByAuthor(String author) {
+        throw new UnsupportedOperationException("FileBookRepository.findByAuthor() not implemented yet.");
+    }
+
+    @Override
+    public Optional<Book> findByTitle(String title) {
+        throw new UnsupportedOperationException("FileBookRepository.findByTitle() not implemented yet.");
+    }
 }
