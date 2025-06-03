@@ -28,4 +28,14 @@ public class SQLBookRepository implements BookRepository {
         throw new UnsupportedOperationException("SQLBookRepository.delete() not implemented yet.");
     }
 
+    @Override
+    public List<Book> findByAuthor(String author) {
+        throw new UnsupportedOperationException("SQLBookRepository.findByAuthor() not implemented yet.");
+    }
+
+    @Override
+    public Optional<Book> findByTitle(String title) {
+        throw new UnsupportedOperationException("SQLBookRepository.findByTitle() not implemented yet.");
+    }
+
 }

@@ -31,4 +31,14 @@ public class InMemoryBookRepository implements BookRepository {
     public void delete(String id) {
         storage.remove(id);
     }
+
+    @Override
+    public List<Book> findByAuthor(String author) {
+        return storage.values().stream().filter(book -> book.getAuthor().equals(author)).toList();
+    }
+
+    @Override
+    public Optional<Book> findByTitle(String title) {
+        return storage.values().stream().filter(book -> book.getTitle().equals(title)).findFirst();
+    }
 }
